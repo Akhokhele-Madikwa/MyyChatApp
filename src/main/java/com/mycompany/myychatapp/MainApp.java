@@ -58,6 +58,8 @@ public class MainApp {
         String loginMessage =login.returnLoginStatus(loggedIn);
         System.out.println(loginMessage);
         
+        //PART 2
+        
     System.out.println("/nWELCOME TO QUICKCHAT");
         boolean successPart2 = true ;
 
