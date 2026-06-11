@@ -7,19 +7,68 @@ package com.mycompany.myychatapp;
 
 import java.util.Scanner;
 
-/**
- *
- * @author madik
- */
+
 public class MainApp {
      public static void main (String[] args){
+         
+         //Message message = new Message();
+         Login login = new Login();
+         
+         //JSON file stored messages
+         //message.loadMessagesFromJSON();
+         
         
         // Scanner allows the user to enter information
         Scanner input = new Scanner(System.in);
         
         // Create an object of the Login class so we can call its methods
-        Login login = new Login();
+        //Login login = new Login();
         
+        String username ;
+        String password;
+        String phoneNumber;
+        
+        System.out.println("====WELCOME TO QUICKCHAT====");
+        
+        while (true){
+            
+            System.out.print("Enter a username");
+            username = input.nextLine() ;
+            
+            if (login.checkUsername (username)) {
+                break;
+                
+            }else {
+                System.out.println("Invalid username. Username must contain '_' and no more than 5 characters.");
+                
+            }
+            
+        }
+        while (true ) {
+            System.out.print("Enter password: ");
+            password = input.nextLine();
+            
+         if (login.checkPasswordComplexity(password)) {
+             break ;
+         } else {
+             System.out.println("Invalid Password");
+             System.out.println(" Password must contain:");
+             System.out.println(" - Capital letter");
+             System.out.println("- Number");
+             System.out.println ("- Special character");       
+         }
+        }
+        while ( true) {
+         System.out.print("Enter phone number (+27...): ");
+                 phoneNumber= input.nextLine();
+             if (login.checkCellPhoneNumber(phoneNumber)) {
+            break;
+            
+        }else { 
+                System.out.println("Invalid phone number.") ;
+                }
+     }
+        /*
         // ---REGISTRATION SECTION ---
         System.out.println("---USER REGISTRATION");
         while(true){
@@ -31,17 +80,18 @@ public class MainApp {
         
         System.out.print("Enter your South African phone number (+27...):");
         String phone = input.nextLine();
-        
+        */
         // Call the registerUser method and store the messageit returns 
-        String response = login.registerUser(username,password,phone);
-        
+        String response = login.registerUser(username,password,phoneNumber);
+        /*
         // Show the registration message
         System.out.println(response);
         if(response.equals("User registered successfully.")){
             break;
         }
             System.out.println("Please try again");
-        }
+        }*/
+        
         //---LOGIN SECTION---
         System.out.println("\n=== USER LOGIN ===");
         
@@ -69,6 +119,7 @@ public class MainApp {
                          System.out.println("1 Send Message");
                          System.out.println("2 Show recently sent messages");
                          System.out.println("3 Quit");
+                         System.out.println("4 Stored Messages");
                          
                          System.out.print("Choose option:");
                          int choice = input.nextInt();
@@ -91,7 +142,7 @@ public class MainApp {
                                      System.out.print("Enter message");
                                      String text = input.nextLine();
                                      
-                                     Message msg = new Message(recipient, text);
+                                     Message msg = new Message(totalMessages, recipient, text);
                                      
                                      // RECIPIENT VALIDATION
                                      System.out.println(msg.checkRecipientCell());
@@ -126,7 +177,9 @@ public class MainApp {
                                             System.out.println("Goodbye!.");
                                         successPart2 = false;
                                         break;
-                                        
+                                        case 4:
+                                                showStoredMessagesMenue(input);
+                                                break;
                                         default : 
                                             System.out.println("Invalid option. Please try again.");
                                         }
@@ -135,4 +188,49 @@ public class MainApp {
                                     } 
                      input.close();
                      }
+     public static void showStoredMessagesMenue(Scanner scanner) {
+    System.out.println("\n=====STORED MESSAGES=====");
+        System.out.println("a) Display all stored messages");
+        System.out.println("b) Display longest message");
+        System.out.println("c) Search by messageID");
+        System.out.println("d) Search by recipient");
+        System.out.println("e) Delete by message hash");
+        System.out.println("f) nDisplay full report");
+        
+        System.out.println("Choose option: ")  ;
+        String option = scanner.nextLine();
+        
+        switch (option.toLowerCase()) {
+            
+            case "a" :
+                System.out.println(Message.displayStoredMessages());
+                break ;
+                
+            case "b" :
+                Message.displayLongestMessages();
+                break;
+                
+            case "c" :
+                System.out.print("Enter Message ID:") ;
+                String id = scanner.nextLine();
+                Message.searchByMessageID(id);
+                break;
+                
+            case "d":
+                System.out.print("Enter Recipient Number:");
+                String recipient= scanner.nextLine();
+                Message.searchByRecipient(recipient);
+                break;
+                
+            case "f" :
+                Message.displayFullReport();
+                break;
+                
+            default :
+                System.out.println("Invalid option.");
+                
+         
+        }
+     
+}
      }
