@@ -74,6 +74,41 @@ public class Message {
          System.out.println("Message not found");
          
     }
+    public static String searchByRecipient (String recipient) {
+         StringBuilder results = new StringBuilder();
+         
+         for (int i = 0 ; i < recipients.size(); i++){
+             
+             if (recipients.get(i).equals(recipient)) {
+                 
+                 results.append(storedMessages.get(i))
+                         .append("\n");
+             }
+         }
+         
+         if (results.length()== 0) {
+             System.out.println("No messages found for this recipient.");
+         }else {
+             System.out.println(results.toString());
+         }
+        return results.toString();
+    }
+     public static String deleteByHash(String hash) {
+         
+         for (int i =0; i < messageHashes.size(); i++){
+             if (messageHashes.get(i).equals(hash)) {
+                 
+                 messageHashes.remove(i);
+                 messageIDs.remove(i);
+                 recipients.remove(i);
+                 storedMessages.remove(i);
+                 
+                 
+                 System.out.println("Message deleted successfully.");
+         }
+     }
+         return"Message hash not found.";
+     }     
         //CREATE 10 DIGIT MESSAGE ID
         private String generateMessageID(){
         
