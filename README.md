@@ -6,6 +6,7 @@
 - Module: PROG 5121
 ----
 ##Project Information
+
 In part 2 of this project i am required to build on top of part 1 registeration and login system
 I will add a message-sending. A user must be able to login before sending their messages.This application includes three application and Json to store message.
 (MainApp.java , Message.java , MessageTest.java )
@@ -24,4 +25,7 @@ I will add a message-sending. A user must be able to login before sending their 
     3. Store Message
 ----
   
+##Part 3
+---
+In part 3  I added Arrays 
 
