@@ -38,7 +38,7 @@ public class Message {
     private static List<String>  messageIDs  = new ArrayList<>();  
     private static List<String> recipients = new ArrayList<>();
     //CONSTRUCTOR
-    public Message (String recipient, String message) {
+    public Message (int messageNumber, String recipient, String message) {
         
         this.messageID = generateMessageID();
         messageCount++;
@@ -46,6 +46,67 @@ public class Message {
         this.recipient = recipient;
         this.message = message;
         this.messageHash = createMessageHash();
+        
+    }
+    public static void storedMessagesMenue (Scanner scanner) {
+        System.out.println("\n=====STORED MESSAGE MENUE=====");
+        System.out.println("a) Display all stored messages");
+        System.out.println("b) Display longest message");
+        System.out.println("c) Search by messageID");
+        System.out.println("d) Search by recipient");
+        System.out.println("e) Delete by message hash");
+        System.out.println("f) nDisplay full report");
+        
+      System.out.println("Choose option: ")  ;
+        char option = scanner.nextLine().toLowerCase().charAt(0);
+        
+        switch (option) {
+            case 'a' -> displayStoredMessages();
+            case 'b'  -> displayLongestMessages();
+            case 'c'->   {
+                System.out.println("Enter Message ID:");
+                String id= scanner.nextLine();
+                searchByMessageID(id);
+                
+                
+                
+            }
+            case 'd' ->  {
+                System.out.println("Enter Recipient Number:");
+                 String recipient= scanner.nextLine(); 
+                 searchByRecipient(recipient);
+                 
+            }  
+            case 'e'-> {
+                System.out.println("Enter Message Hash");
+                String hash = scanner.nextLine();
+                deleteByHash(hash);
+            }
+            case 'f'-> {
+                System.out.println("Returning to Main Menue");
+                break;
+                
+            }
+            default -> System.out.println("Invalid option");
+          
+
+            
+        }
+        
+    }
+    
+    public static String displayStoredMessages () {
+        
+        StringBuilder output = new StringBuilder();
+        output.append("STORED MESSAGES \n ");
+        for (int i =0 ; i < storedMessages.size(); i++){
+            output.append("Message:")
+                  .append(storedMessages.get(i))
+                  .append("\n\n");
+        }
+        return output.toString();
+    }
+    
     public static String displayLongestMessages () {
         String Longest = "";
         for (String message : storedMessages) {
@@ -109,6 +170,63 @@ public class Message {
      }
          return"Message hash not found.";
      }     
+     
+     public  static String displayFullReport () {
+    
+          System.out.print("\n=====FULL REPORT =====");
+        return null;
+     
+}
+     public String getMessageID() {
+        return messageID;
+    }
+
+    public String getMessageHash() {
+        return messageHash;
+    }
+
+    public String getRecipient() {
+        return recipient;
+    }
+
+    public String getMessageText() {
+        return message;
+    }
+     public static List<String> getSentMessages() {
+         return sentMessages;
+     }
+     
+     public static List<String> getDisregardedMessages() {
+         return disregardedMessages;
+     }
+       public static List<String> getStoredMessages() {
+           return storedMessages;
+           
+       }
+       public static List<String> getMessageHashes() {
+           return messageHashes;
+           
+       }
+       public static List<String> getMessagesIDs () {
+           return messageIDs;
+           
+          
+       }
+       
+       /*
+       public Message (String recipient, String messageText){
+            
+           this.messageID = generateMessageID();
+           
+           messageCount++;
+           this.messageNumber = recipient ;
+           this.message = messageText;
+           
+           this.messageHash = createMessageHash();
+           
+       }*/
+       
+       
         //CREATE 10 DIGIT MESSAGE ID
         private String generateMessageID(){
         
@@ -163,11 +281,23 @@ public class Message {
             switch (choice)  {
                 
                 case 1:
-                    return "Message sent." ;
+                    sentMessages.add(message);
+                    messageHashes.add(messageHash);
+                    messageIDs.add(messageID);
+                    
+                           
+                   return "Message sent." ;
                 case 2 :
-                 
+                    disregardedMessages.add(message);
+                    
+                
                     return " Select 0 to delete message." ;
                 case 3:
+                       storedMessages.add(message);
+                       
+                       messageHashes.add(messageHash);
+                       messageIDs.add(messageID);
+                       recipients.add(recipient);
                        storeMessage();
                     return"Message stored successfully." ;
                 default :
@@ -202,6 +332,8 @@ public class Message {
              return messageCount;
              
         }
+        
+        
         
              
 }

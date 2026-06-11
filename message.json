@@ -10,3 +10,33 @@
     "MessageHash": "76:3:LETDINNER.",
     "MessageID": "7677056048"
 }
+{
+    "Message": "Hello, Unjani!!!",
+    "Recipient": "+27734331289",
+    "MessageHash": "87:0:HELLO,UNJANI!!!",
+    "MessageID": "8773069890"
+}
+{
+    "Message": "Goodnight!!!!",
+    "Recipient": "+27730001234",
+    "MessageHash": "76:0:GOODNIGHT!!!!GOODNIGHT!!!!",
+    "MessageID": "7612291129"
+}
+{
+    "Message": "Hello, How are you??",
+    "Recipient": "+27738881212",
+    "MessageHash": "72:0:HELLO,YOU??",
+    "MessageID": "7297094222"
+}
+{
+    "Message": "Hello, !!!!!!!",
+    "Recipient": "+27734452232",
+    "MessageHash": "43:0:HELLO,!!!!!!!",
+    "MessageID": "4320303563"
+}
+{
+    "Message": "Hello, it's me",
+    "Recipient": "+27781110008",
+    "MessageHash": "77:0:HELLO,ME",
+    "MessageID": "7731708669"
+}
