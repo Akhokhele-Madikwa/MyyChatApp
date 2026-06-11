@@ -3,11 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.myychatapp;
+import org.json.JSONObject;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Random;
 import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
 
 /**
  *
@@ -17,12 +24,19 @@ public class Message {
     
     private static int messageCount =0;
     
+    
     private String messageID;
     private int messageNumber;
     private String recipient;
     private String message;
     private String messageHash;
     
+    private static List<String> sentMessages = new ArrayList<>();
+    private static List<String> disregardedMessages = new ArrayList<>(); 
+    private static List<String> storedMessages = new ArrayList<>();
+    private static List<String> messageHashes = new ArrayList<>();
+    private static List<String>  messageIDs  = new ArrayList<>();  
+    private static List<String> recipients = new ArrayList<>();
     //CONSTRUCTOR
     public Message (String recipient, String message) {
         
@@ -130,5 +144,4 @@ public class Message {
         
              
 }
-        
         
