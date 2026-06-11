@@ -46,8 +46,34 @@ public class Message {
         this.recipient = recipient;
         this.message = message;
         this.messageHash = createMessageHash();
-    }
+    public static String displayLongestMessages () {
+        String Longest = "";
+        for (String message : storedMessages) {
+            if (message != null && message.length() > Longest.length()) {
+             Longest = message;
+        }
+        }
         
+        if (Longest.isEmpty()){
+            System.out.println("No stored messages found");
+            
+        }else {
+                System.out.println("Longest Message:" +Longest);
+        }
+     return Longest;   
+    }
+    public static void searchByMessageID(String id) {
+        
+        for (int i = 0; i < messageIDs.size(); i++ )  {
+            if (messageIDs.get(i).equals(id));     {
+            System.out.println("Message Found: ");
+            System.out.println( storedMessages.get(i)) ;
+            return ;
+        }
+    }
+         System.out.println("Message not found");
+         
+    }
         //CREATE 10 DIGIT MESSAGE ID
         private String generateMessageID(){
         
