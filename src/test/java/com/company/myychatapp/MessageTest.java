@@ -106,9 +106,9 @@ public class MessageTest {
                 "Hello"
         );
 
-        assertNotNull(message.getMessagesIDs());
+        assertNotNull(message.getMessageID());
 
-        assertEquals(10, message.getMessagesIDs().length());
+        assertEquals(10, message.getMessageID().length());
     }
 
     // Test send message option
